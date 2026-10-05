@@ -1,0 +1,34 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ostia:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v7
+      - name: Use this checkout as the tap
+        run: |
+          tap="$(brew --repository)/Library/Taps/aurigax-ai/homebrew-tap"
+          mkdir -p "$(dirname "$tap")"
+          rm -rf "$tap"
+          ln -s "$GITHUB_WORKSPACE" "$tap"
+      - run: brew style aurigax-ai/tap
+      - run: brew audit --cask --strict --online aurigax-ai/tap/ostia
+      - run: brew install --cask aurigax-ai/tap/ostia
+      - name: The installed app is the cask version and passes Gatekeeper
+        run: |
+          want=$(brew info --cask --json=v2 aurigax-ai/tap/ostia | jq -r '.casks[0].version')
+          got=$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' /Applications/Ostia.app/Contents/Info.plist)
+          echo "cask $want, app $got"
+          test "$want" = "$got"
+          spctl -a -vvv -t exec /Applications/Ostia.app
+      - run: brew uninstall --cask --zap aurigax-ai/tap/ostia
+      - run: test ! -e /Applications/Ostia.app
