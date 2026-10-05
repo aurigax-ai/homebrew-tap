@@ -12,6 +12,8 @@ permissions:
 jobs:
   ostia:
     runs-on: macos-26
+    env:
+      HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v7
       - name: Use this checkout as the tap
