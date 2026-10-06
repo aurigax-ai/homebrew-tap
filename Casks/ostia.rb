@@ -1,6 +1,6 @@
 cask "ostia" do
-  version "0.5.6"
-  sha256 "26e0e7cd361c9e2ff35da25177cf94749e4fbf45bb19f46ab0c030750a3ffff8"
+  version "0.5.8"
+  sha256 "994f314f6667bdba8830fa6006f3dc8a0d1ad9f6cbe858f9f35385fe49c4fb28"
 
   url "https://github.com/aurigax-ai/ostia/releases/download/v#{version}/ostia-#{version}-arm64.dmg"
   name "Ostia"
