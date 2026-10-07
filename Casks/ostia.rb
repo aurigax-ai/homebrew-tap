@@ -1,6 +1,6 @@
 cask "ostia" do
-  version "0.5.8"
-  sha256 "994f314f6667bdba8830fa6006f3dc8a0d1ad9f6cbe858f9f35385fe49c4fb28"
+  version "0.5.9"
+  sha256 "5bd539ebec889c3493d28dad9228cbf70eeb0dfda5305994dd6ca4e6179ba7c6"
 
   url "https://github.com/aurigax-ai/ostia/releases/download/v#{version}/ostia-#{version}-arm64.dmg"
   name "Ostia"
@@ -13,7 +13,7 @@ cask "ostia" do
   end
 
   depends_on arch: :arm64
-  depends_on macos: :big_sur
+  depends_on macos: :ventura
 
   app "Ostia.app"
 
