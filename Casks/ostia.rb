@@ -1,6 +1,6 @@
 cask "ostia" do
-  version "0.5.9"
-  sha256 "5bd539ebec889c3493d28dad9228cbf70eeb0dfda5305994dd6ca4e6179ba7c6"
+  version "0.5.10"
+  sha256 "050d667a3f13fb845bc5137a34b13669cc15d830c982c0163095a11466b03a27"
 
   url "https://github.com/aurigax-ai/ostia/releases/download/v#{version}/ostia-#{version}-arm64.dmg"
   name "Ostia"
@@ -16,6 +16,7 @@ cask "ostia" do
   depends_on macos: :ventura
 
   app "Ostia.app"
+  binary "#{appdir}/Ostia.app/Contents/Resources/bin/ostia"
 
   zap trash: [
     "~/.config/ostia",
